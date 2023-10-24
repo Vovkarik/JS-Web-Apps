@@ -10,4 +10,8 @@ const render = (component, container) => {
   container.append(element);
 };
 
-export {createElement, render};
+const unrender = (component) => {
+  component.removeElement();
+}
+
+export {createElement, render, unrender};

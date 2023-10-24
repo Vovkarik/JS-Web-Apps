@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import {createElement} from '../src/render.js';
 
 const createTaskTemplate = (task) => {
   const {color, description, dueDate} = task;

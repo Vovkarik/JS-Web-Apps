@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import {createElement} from '../src/render.js';
 
 const createTaskEditTemplate = (task = {}) => {
   const {
@@ -122,8 +122,16 @@ const createTaskEditTemplate = (task = {}) => {
 }
 
 export default class TaskEditView {
+  constructor(task, submitHandler, deleteHandler) {
+    this.task = task;
+    this.formSubmitHandler = submitHandler;
+    this.formDeleteHandler = deleteHandler;
+    this.getElement().querySelector('form').addEventListener('submit', this.formSubmit);
+    this.getElement().querySelector('.card__delete').addEventListener('click', this.formDelete);
+  }
+
   getTemplate() {
-    return createTaskEditTemplate();
+    return createTaskEditTemplate(this.task);
   }
 
   getElement() {
@@ -135,6 +143,17 @@ export default class TaskEditView {
   }
 
   removeElement() {
-    this.element = null;
+    this.element.closest('.card--edit').remove();
   }
+
+  formDelete = (event) => {
+    event.preventDefault();
+    this.formDeleteHandler(this);
+  }
+
+  formSubmit = (event) => {
+    event.preventDefault();
+    this.formSubmitHandler(this);
+  }
+  
 }

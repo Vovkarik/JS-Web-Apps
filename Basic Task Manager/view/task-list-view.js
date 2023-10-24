@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import {createElement} from '../src/render.js';
 
 const createTaskListTemplate = () => '<div class="board__tasks"></div>';
 

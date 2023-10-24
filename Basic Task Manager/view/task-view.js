@@ -1,7 +1,11 @@
 import {createElement} from '../src/render.js';
 
-const createTaskTemplate = (task) => {
-  const {color, description, dueDate} = task;
+const createTaskTemplate = (task = {}) => {
+  const {
+    color = 'black',
+    description = '',
+    dueDate = null,
+  } = task;
 
   return (
   `<article class="card card--${color}">
@@ -29,8 +33,10 @@ const createTaskTemplate = (task) => {
 }
 
 export default class TaskView {
-  constructor(task) {
+  constructor(task, editHandler) {
     this.task = task;
+    this.formEditHandler = editHandler;
+    this.getElement().querySelector('.card__btn').addEventListener('click', this.formEdit);
   }
 
   getTemplate() {
@@ -46,6 +52,11 @@ export default class TaskView {
   }
 
   removeElement() {
-    this.element = null;
+    this.element.closest('.card').remove();
+  }
+
+  formEdit = (event) => {
+    event.preventDefault();
+    this.formEditHandler(this);
   }
 }

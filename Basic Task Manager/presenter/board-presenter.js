@@ -19,7 +19,7 @@ export default class BoardPresenter {
     render(this.taskListComponent, this.boardComponent.getElement());
 
     for (let i = 1; i < this.boardTasks.length; i++) {
-      render(new TaskView(this.boardTasks[i]), this.taskListComponent.getElement());
+      render(new TaskView(this.boardTasks[i], this.editHandler), this.taskListComponent.getElement());
     }
 
     render(new LoadMoreButtonView(), this.boardComponent.getElement());
@@ -32,12 +32,18 @@ export default class BoardPresenter {
 
   deleteHandler = (target) => {
     this.tasksModel.removeTask(this.boardTasks.indexOf(target));
-    console.log(target);
     unrender(target);
   }
 
   submitHandler = (target) => {
+    console.log(target)
     unrender(target)
-    render(new TaskView(this.boardTasks.indexOf(target)), this.taskListComponent.getElement());
+    render(new TaskView(target.task, this.editHandler), this.taskListComponent.getElement());
+  }
+
+  editHandler = (target) => {
+    unrender(target)
+    console.log(target)
+    render(new TaskEditView(target.task, this.submitHandler, this.deleteHandler), this.taskListComponent.getElement());
   }
 }

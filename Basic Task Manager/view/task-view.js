@@ -1,12 +1,8 @@
 import {createElement} from '../src/render.js';
 
-const createTaskTemplate = (task = {}) => {
-  const {
-    color = 'black',
-    description = '',
-    dueDate = null,
-  } = task;
-
+const createTaskTemplate = (task) => {
+  const {color, description, dueDate} = task;
+ 
   return (
   `<article class="card card--${color}">
     <div class="card__form">

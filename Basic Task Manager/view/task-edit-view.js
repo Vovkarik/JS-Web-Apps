@@ -124,6 +124,7 @@ const createTaskEditTemplate = (task = {}) => {
 export default class TaskEditView {
   constructor(task, submitHandler, deleteHandler) {
     this.task = task;
+    console.log(this.task)
     this.formSubmitHandler = submitHandler;
     this.formDeleteHandler = deleteHandler;
     this.getElement().querySelector('form').addEventListener('submit', this.formSubmit);
@@ -153,6 +154,7 @@ export default class TaskEditView {
 
   formSubmit = (event) => {
     event.preventDefault();
+    console.log(this.task);
     this.formSubmitHandler(this);
   }
   

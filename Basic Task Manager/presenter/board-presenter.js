@@ -18,7 +18,7 @@ export default class BoardPresenter {
     render(this.boardComponent, this.boardContainer);
     render(this.taskListComponent, this.boardComponent.getElement());
 
-    for (let i = 1; i < this.boardTasks.length; i++) {
+    for (let i = 0; i < this.boardTasks.length; i++) {
       render(new TaskView(this.boardTasks[i], this.editHandler), this.taskListComponent.getElement());
     }
 
@@ -36,6 +36,10 @@ export default class BoardPresenter {
   }
 
   submitHandler = (target) => {
+    if(!target.task) target.task = {};
+    target.task.color = target.getElement().querySelector('[name="color"]:checked').value;
+    target.task.description = target.getElement().querySelector('.card__text').value
+    target.task.dueDate = target.getElement().querySelector('.card__date').value
     console.log(target)
     unrender(target)
     render(new TaskView(target.task, this.editHandler), this.taskListComponent.getElement());

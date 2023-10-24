@@ -44,3 +44,28 @@
     resize:none;
     height: 100px;
 }
+
+.card--black {
+    background-color: black;
+    color: white;
+}
+
+.card--yellow {
+    background-color: yellow;
+    color: purple;
+}
+
+.card--blue {
+    background-color: blue;
+    color: orange;
+}
+
+.card--green {
+    background-color: green;
+    color: red;
+}
+
+.card--pink {
+    background-color: pink;
+    color: yellowgreen;
+}
